@@ -57,16 +57,20 @@ public class MailManagerServiceImpl implements MailManagerService{
     }
 
     @Override
-    public String add30DaysFromDate(List<PurchaseDate> mail)  {
-        List<AccountDetailsModel> allMails = new ArrayList<>();
+    public List<String> add30DaysFromDate(List<PurchaseDate> mail)  {
+        System.out.println(mail.size());
+        List<String> allMails = new ArrayList<>();
+        Optional<AccountDetailsModel> optional;
         for(int i=0;i<mail.size();i++) {
-            Optional<AccountDetailsModel> optional = mailManagerRepo.findById(mail.get(i).getMail());
-            optional.get().setPurchaseDate(mail.get(i).getPurchaseDate());
-            optional.get().setExpiryDate(mail.get(i).getPurchaseDate().plusDays(30));
-            AccountDetailsModel accountDetailsModel = optional.get();
-            mailManagerRepo.save(accountDetailsModel);
-            System.out.print(accountDetailsModel);
+             optional = mailManagerRepo.findById(mail.get(i).getMail());
+                if(optional.isPresent()) {
+                    optional.get().setPurchaseDate(mail.get(i).getPurchaseDate());
+                    optional.get().setExpiryDate(mail.get(i).getPurchaseDate().plusDays(30));
+                    mailManagerRepo.save(optional.get());
+                    allMails.add(mail.get(i).getMail());
+                    System.out.print(optional.get());
+                }
         }
-        return "SUCCESS";
+        return allMails;
     }
 }

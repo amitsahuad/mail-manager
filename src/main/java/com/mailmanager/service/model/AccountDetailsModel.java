@@ -12,8 +12,9 @@ import java.util.Date;
 @Data
 @Document(collection =  "details")
 public class AccountDetailsModel {
+    @Id
     private String email;
-    private Date purchaseDate;
-    private Date expiryDate;
+    private LocalDate purchaseDate;
+    private LocalDate expiryDate;
     private String resellerName;
 }

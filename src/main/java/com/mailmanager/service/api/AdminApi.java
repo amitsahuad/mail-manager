@@ -1,6 +1,7 @@
 package com.mailmanager.service.api;
 
 import com.mailmanager.service.dto.AccountDetailsDto;
+import com.mailmanager.service.dto.PurchaseDate;
 import com.mailmanager.service.model.AccountDetailsModel;
 import com.mailmanager.service.service.MailManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,12 +49,12 @@ public class AdminApi {
     }
 
     @GetMapping(value="expireOnDate/{d}")
-    public ResponseEntity<List<AccountDetailsModel>> expireOnDate(@PathVariable  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d){
+    public ResponseEntity<List<AccountDetailsModel>> expireOnDate(@PathVariable  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate d){
         return new ResponseEntity<>(mailManagerService.expireOnDate(d), HttpStatus.OK);
     }
 
     @PostMapping("add30DaysFromDate")
-    public String add30DaysFromDate(@RequestBody List<String> mails) throws ParseException {
+    public String add30DaysFromDate(@RequestBody List<PurchaseDate> mails) {
         String status = mailManagerService.add30DaysFromDate(mails);
         return status;
     }

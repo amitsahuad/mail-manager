@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class AccountDetailsDto {
     private String email;
-    private Date purchaseDate;
-    private Date expiryDate;
+    private LocalDate purchaseDate;
+    private LocalDate expiryDate;
     private String resellerName;
 }

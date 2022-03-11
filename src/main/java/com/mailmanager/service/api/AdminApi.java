@@ -54,8 +54,8 @@ public class AdminApi {
     }
 
     @PostMapping("add30DaysFromDate")
-    public String add30DaysFromDate(@RequestBody List<PurchaseDate> mails) {
-        String status = mailManagerService.add30DaysFromDate(mails);
-        return status;
+    public List<String> add30DaysFromDate(@RequestBody List<PurchaseDate> mails) {
+        List<String> updatedMails= mailManagerService.add30DaysFromDate(mails);
+        return updatedMails;
     }
 }

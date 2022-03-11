@@ -14,5 +14,5 @@ public interface MailManagerService {
     String addAccounts(List<AccountDetailsDto> dtos);
     List<AccountDetailsModel> getDetailsByDate(LocalDate from, LocalDate to);
     List<AccountDetailsModel> expireOnDate(LocalDate d);
-    String add30DaysFromDate(List<PurchaseDate> mail) ;
+    List<String> add30DaysFromDate(List<PurchaseDate> mail) ;
 }

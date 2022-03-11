@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories
 @EnableAutoConfiguration
 public class MailManagerApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(MailManagerApplication.class, args);
     }
